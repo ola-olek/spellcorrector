@@ -1,7 +1,7 @@
 import re
 import os
 from collections import Counter
-from fuzzywuzzy import process
+#from fuzzywuzzy import process
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -17,25 +17,26 @@ class SpellCorrector:
   WORDS = Counter(WordHelper.words(open(os.path.join(__location__,'data/big.txt')).read()))
   WORDS_SET = set(WordHelper.words(open(os.path.join(__location__,'data/big.txt')).read()))
 
-  def P(self, word, N=sum(WORDS.values())): 
+  def P(self, word, N=sum(WORDS.values())):
     "Probability of `word`."
     return SpellCorrector.WORDS[word] / N
 
-  def correction(self, word): 
-    "Most probable spelling correction for word."
-    return [max(self.candidates(word), key=self.P)]
+  def correction(self, word, num_corrections=1):
+    "Most probable spelling correction(s) for word. Number of corrections can be specified."
+    sorted_candidates = sorted(self.candidates(word), key=self.P, reverse=True)
+    return sorted_candidates[:num_corrections]
 
-  def candidates(self, word): 
+  def candidates(self, word):
     "Generate possible spelling corrections for word."
     #return self.known_fuzzy(word)
     return (
-      self.known([word]) or 
-      self.known(self.edits1(word)) or 
-      self.known(self.edits2(word)) or 
+      self.known([word]) or
+      self.known(self.edits1(word)) or
+      self.known(self.edits2(word)) or
       [word]
       )
 
-  def known(self, words): 
+  def known(self, words):
     "The subset of `words` that appear in the dictionary of WORDS."
     return set(w for w in words if w in SpellCorrector.WORDS)
 
@@ -53,6 +54,6 @@ class SpellCorrector:
     inserts    = [L + c + R               for L, R in splits for c in letters]
     return set(deletes + transposes + replaces + inserts)
 
-  def edits2(self, word): 
+  def edits2(self, word):
     "All edits that are two edits away from `word`."
     return (e2 for e1 in self.edits1(word) for e2 in self.edits1(e1))

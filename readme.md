@@ -1,22 +1,32 @@
 # Spell Corrector
 
-### Setup
+## Table of Contents
 
-clone repo: `git clone https://github.com/ola-olek/spellcorrector.git`
+1. [Prerequisites](#prerequisites)
+2. [Setting Up](#setting-up)
+3. [Running](#running)
+3. [Usage Example](#usage-example)
 
-setup virtual environment: `python3.11 -m venv venv`
+## Prerequisites
 
-install requirement: `pip install -r requirement.txt`
+- Python>=3.10
 
-activate virtual environment:
+## Setting up
 
+Clone repo: `git clone https://github.com/ola-olek/spellcorrector.git`
+
+Setup virtual environment: `python -m venv venv`
+
+Activate your virtual environment:
 - Unix: `source venv/bin/activate`
 - Windows: `venv\Scripts\activate.bat`
 
-### Usage
+Install requirement: `pip install -r requirement.txt`
 
-`python main.py`
+## Running
 
-### Example
+Just write in your terminal: `python main.py`. Simple window should be opened.
 
-![example](example/screenshot/example.png)
+## Usage example
+
+![example](example/screenshot/example2.png)

@@ -1,12 +1,13 @@
-from spell_corrector import SpellCorrector
+import tkinter
+
+from spell_corrector import SpellCorrector, SpellCorrectorGUI
 
 
 def main():
     spell_corrector = SpellCorrector()
-    while True:
-        word_to_correct = input("Enter word >")
-        matches = spell_corrector.correction(word_to_correct)
-        print_results(matches)
+    root = tkinter.Tk()
+    SpellCorrectorGUI(spell_corrector, root)
+    root.mainloop()
 
 def print_results(matches):
     for word in matches:

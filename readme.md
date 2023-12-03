@@ -6,6 +6,7 @@
 2. [Setting Up](#setting-up)
 3. [Running](#running)
 3. [Usage Example](#usage-example)
+4. [References](#references)
 
 ## Prerequisites
 
@@ -30,3 +31,6 @@ Just write in your terminal: `python main.py`. Simple window should be opened.
 ## Usage example
 
 ![example](example/screenshot/example2.png)
+
+## References
+https://www.norvig.com/spell-correct.html

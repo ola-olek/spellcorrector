@@ -2,8 +2,6 @@ import re
 import os
 from collections import Counter
 
-# from fuzzywuzzy import process
-
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -35,10 +33,6 @@ class SpellCorrector:
                 self.known(self.edits2(word)) or
                 [word]
         )
-
-    def known_fuzzy(self, word):
-        best_matches = [a[0] for a in process.extractBests(word, SpellCorrector.WORDS_SET)]
-        return set(a for a in best_matches if a in SpellCorrector.WORDS)
 
     def edits1(self, word):
         """All edits that are one edit away from `word`."""
